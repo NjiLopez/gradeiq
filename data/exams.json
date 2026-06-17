@@ -1,0 +1,31 @@
+[
+    {
+        "id": "demo01abc",
+        "title": "Biology Midterm 2025",
+        "subject": "Biology 101",
+        "description": "Covers chapters 1-8: Cell Biology, Genetics, and Ecology.",
+        "q_count": 20,
+        "answer_key": {
+            "1": "A", "2": "C", "3": "B", "4": "D", "5": "A",
+            "6": "B", "7": "C", "8": "A", "9": "D", "10": "B",
+            "11": "C", "12": "A", "13": "D", "14": "B", "15": "C",
+            "16": "A", "17": "D", "18": "B", "19": "C", "20": "A"
+        },
+        "pass_threshold": 50,
+        "created_at": "2025-06-01 09:00:00"
+    },
+    {
+        "id": "demo02xyz",
+        "title": "Mathematics Quiz 3",
+        "subject": "Algebra II",
+        "description": "Quadratic equations, polynomials, and functions.",
+        "q_count": 15,
+        "answer_key": {
+            "1": "B", "2": "A", "3": "D", "4": "C", "5": "B",
+            "6": "A", "7": "C", "8": "D", "9": "B", "10": "A",
+            "11": "C", "12": "B", "13": "A", "14": "D", "15": "C"
+        },
+        "pass_threshold": 60,
+        "created_at": "2025-06-03 10:30:00"
+    }
+]
