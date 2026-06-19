@@ -77,10 +77,17 @@ include 'includes/header.php';
             <span style="margin-left:auto">Created <?= date('M j, Y', strtotime($exam['created_at'])) ?></span>
           </div>
 
-          <div style="display:flex;gap:8px">
-            <a href="grade.php?exam_id=<?= $exam['id'] ?>" class="btn btn-primary" style="flex:1;justify-content:center">Grade →</a>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="grade.php?exam_id=<?= $exam['id'] ?>" class="btn btn-primary" style="flex:1;justify-content:center;min-width:80px">Grade →</a>
             <a href="view_exam.php?id=<?= $exam['id'] ?>" class="btn btn-secondary">View Key</a>
             <a href="create_exam.php?id=<?= $exam['id'] ?>" class="btn btn-secondary">Edit</a>
+            <div style="position:relative;display:inline-block">
+              <button onclick="toggleMenu(this)" class="btn btn-secondary" style="padding:8px 12px">⬇</button>
+              <div class="dropdown-menu" style="display:none;position:absolute;right:0;top:100%;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;min-width:140px;z-index:10;box-shadow:0 4px 8px rgba(0,0,0,0.1)">
+                <a href="download_exam.php?id=<?= $exam['id'] ?>&format=json" class="dropdown-item" style="display:block;padding:10px 12px;color:var(--text-primary);text-decoration:none;font-size:0.9rem;border-bottom:1px solid var(--border)">📄 JSON</a>
+                <a href="download_exam.php?id=<?= $exam['id'] ?>&format=csv" class="dropdown-item" style="display:block;padding:10px 12px;color:var(--text-primary);text-decoration:none;font-size:0.9rem">📊 CSV</a>
+              </div>
+            </div>
             <form method="POST" style="margin:0">
               <input type="hidden" name="exam_id" value="<?= $exam['id'] ?>">
               <button type="submit" name="delete_exam" class="btn btn-danger"
@@ -93,5 +100,32 @@ include 'includes/header.php';
     <?php endif; ?>
   </div>
 </main>
+
+<script>
+function toggleMenu(btn) {
+  const menu = btn.nextElementSibling;
+  const isOpen = menu.style.display === 'block';
+  
+  // Close all other menus
+  document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+  
+  // Toggle current menu
+  menu.style.display = isOpen ? 'none' : 'block';
+  
+  // Close when clicking outside
+  if (!isOpen) {
+    setTimeout(() => {
+      document.addEventListener('click', closeMenus);
+    }, 0);
+  }
+}
+
+function closeMenus(e) {
+  if (!e.target.closest('.dropdown-menu') && !e.target.closest('button')) {
+    document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+    document.removeEventListener('click', closeMenus);
+  }
+}
+</script>
 
 <?php include 'includes/footer.php'; ?>
